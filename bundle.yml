@@ -11,7 +11,7 @@ resources:
   pipelines:
     # DLT pipeline
     medium_metrics_pipeline:
-      name: "[${bundle.environment}] FE Medium Metrics Pipeline"
+      name: "[${bundle.environment}] FE Medium Metrics Pipeline - Volvo"
       target: "medium_post_report_${bundle.environment}"
       libraries:
         - file:
