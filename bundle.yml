@@ -9,7 +9,7 @@ workspace:
 resources:
 
   pipelines:
-    # Our DLT pipeline
+    # DLT pipeline
     medium_metrics_pipeline:
       name: "[${bundle.environment}] FE Medium Metrics Pipeline"
       target: "medium_post_report_${bundle.environment}"
