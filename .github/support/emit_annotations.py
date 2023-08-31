@@ -10,7 +10,8 @@ def main():
     pipeline_id = sys.argv[1]
     update_id = sys.argv[2]
 
-    w = WorkspaceClient(host="https://e2-demo-west.cloud.databricks.com/")
+    #w = WorkspaceClient(host="https://e2-demo-west.cloud.databricks.com/")
+    w = WorkspaceClient(host="https://adb-2701504584282370.10.azuredatabricks.net/")
     events = w.pipelines.list_pipeline_events(
         pipeline_id=pipeline_id,
     )
