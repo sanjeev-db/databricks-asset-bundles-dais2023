@@ -40,7 +40,25 @@ resources:
           new_cluster:
             spark_version: 13.1.x-scala2.12
             num_workers: 1
-            node_type_id: Standard_DS3_v2            
+            node_type_id: Standard_DS3_v2  
+
+    fe_medium_metrics_dup:
+      name: "[${bundle.environment}] Metrics for FE Medium Posts"
+      tasks:
+        - task_key: dlt_medium_pipeline_dup
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.medium_metrics_pipeline.id}
+        - task_key: "${bundle.environment}_medium_notebook_report_dup"
+          depends_on:
+            - task_key: dlt_medium_pipeline_dup
+          notebook_task:
+            base_parameters:
+              dbname: "medium_post_report_${bundle.environment}"
+            notebook_path: ./source_2/fe_medium_report.py
+          new_cluster:
+            spark_version: 13.1.x-scala2.12
+            num_workers: 1
+            node_type_id: Standard_DS3_v2                  
 
 environments:
   development:
