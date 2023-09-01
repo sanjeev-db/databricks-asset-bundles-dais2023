@@ -2,9 +2,9 @@ resources:
 
   pipelines:
     # DLT pipeline..
-    a_medium_metrics_pipeline:
+    medium_metrics_pipeline:
       name: "[${bundle.environment}] a Medium Metrics Pipeline"
-      target: "a_medium_post_report_${bundle.environment}"
+      target: "medium_post_report_${bundle.environment}"
       libraries:
         - file:
             path: ./rhelp/ingest.py
@@ -19,15 +19,15 @@ resources:
     rhelp_fe_medium_metrics:
       name: "[${bundle.environment}] rhelp Metrics for Medium Posts"
       tasks:
-        - task_key: a_dlt_medium_pipeline
+        - task_key: dlt_medium_pipeline
           pipeline_task:
             pipeline_id: ${resources.pipelines.a_medium_metrics_pipeline.id}
-        - task_key: "${bundle.environment}_a_medium_notebook_report"
+        - task_key: "${bundle.environment}_medium_notebook_report"
           depends_on:
-            - task_key: a_dlt_medium_pipeline
+            - task_key: dlt_medium_pipeline
           notebook_task:
             base_parameters:
-              dbname: "a_medium_post_report_${bundle.environment}"
+              dbname: "medium_post_report_${bundle.environment}"
             notebook_path: ./rhelp/fe_medium_report.py
           new_cluster:
             spark_version: ${var.spark_version}
