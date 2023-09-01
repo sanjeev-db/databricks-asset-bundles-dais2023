@@ -2,7 +2,7 @@ resources:
 
   pipelines:
     # DLT pipeline..
-    c_medium_metrics_pipeline:
+    outbound_medium_metrics_pipeline:
       name: "[${bundle.environment}] outbound Medium Metrics Pipeline"
       target: "outbound_medium_post_report_${bundle.environment}"
       libraries:
@@ -28,3 +28,16 @@ resources:
             spark_version: ${var.spark_version}
             num_workers: 1
             node_type_id: ${var.node_type_id} 
+
+    outbound_fe_wikipedia_metrics:
+      name: "[${bundle.environment}] outbound Metrics for Medium Posts"
+      tasks:
+        - task_key: "${bundle.environment}_medium_notebook_report"
+          notebook_task:
+            base_parameters:
+              dbname: "outbound_medium_post_report_${bundle.environment}"
+            notebook_path: ./outbound/fe_medium_report.py
+          new_cluster:
+            spark_version: ${var.spark_version}
+            num_workers: 1
+            node_type_id: ${var.node_type_id}         
