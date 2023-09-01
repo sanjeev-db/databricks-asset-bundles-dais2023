@@ -21,7 +21,7 @@ resources:
       tasks:
         - task_key: dlt_medium_pipeline
           pipeline_task:
-            pipeline_id: ${resources.pipelines.medium_metrics_pipeline.id}
+            pipeline_id: ${resources.pipelines.outbound_medium_metrics_pipeline.id}
         - task_key: "${bundle.environment}_medium_notebook_report"
           depends_on:
             - task_key: dlt_medium_pipeline
