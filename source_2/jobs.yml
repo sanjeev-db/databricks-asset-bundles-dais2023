@@ -17,3 +17,5 @@ resources:
             spark_version: 13.1.x-scala2.12
             num_workers: 1
             node_type_id: Standard_DS3_v2
+
+            
