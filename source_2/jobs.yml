@@ -7,7 +7,7 @@ resources:
       target: "medium_post_report_${bundle.environment}"
       libraries:
         - file:
-            path: ./source_2/ingest.py
+            path: ./ingest.py
         - file:
             #path: ./get_metrics.py
       channel: preview
