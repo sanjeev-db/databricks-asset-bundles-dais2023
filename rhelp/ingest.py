@@ -15,7 +15,7 @@ def medium_a_raw():
 
 @dlt.table
 def medium_a_clean():
-    df: DataFrame = dlt.read("medium_raw")
+    df: DataFrame = dlt.read("medium_a_raw")
     df = df.filter(df.link != 'null')
     df = df.withColumn("author", regexp_replace("author", "\\([^()]*\\)", ""))
     return df
