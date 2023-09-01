@@ -1,30 +1,13 @@
-resources:
-
-  pipelines:
-    # DLT pipeline..
-    medium_metrics_pipeline:
-      name: "[${bundle.environment}] outbound Medium Metrics Pipeline"
-      target: "outbound_medium_post_report_${bundle.environment}"
-      libraries:
-        - file:
-            path: ./outbound/ingest.py
-        - file:
-            path: ./outbound/get_metrics.py
-      channel: preview
-      configuration:
-        "bundle.file_path": "/Workspace/${workspace.file_path}"    
+resources:   
 
   jobs:
     # A two-task Databricks Workflow - dlt + notebook report
     outbound_fe_medium_metrics:
       name: "[${bundle.environment}] outbound Metrics for Medium Posts"
       tasks:
-        - task_key: dlt_medium_pipeline
-          pipeline_task:
-            pipeline_id: ${resources.pipelines.medium_metrics_pipeline.id}
         - task_key: "${bundle.environment}_medium_notebook_report"
           depends_on:
-            - task_key: dlt_medium_pipeline
+            - task_key: 
           notebook_task:
             base_parameters:
               dbname: "outbound_medium_post_report_${bundle.environment}"

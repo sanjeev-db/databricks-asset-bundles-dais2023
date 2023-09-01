@@ -6,7 +6,7 @@ import pandas as pd
 import requests
 
 @dlt.table
-def medium_metrics():
+def medium_a_metrics():
     df: DataFrame = dlt.read("medium_clean")
 
     metricsDF = df.groupby("link").applyInPandas(get_metrics, schema="link string, claps double, readingTime double")
