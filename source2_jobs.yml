@@ -31,5 +31,5 @@ resources:
             notebook_path: ./source_2/fe_medium_report.py
           new_cluster:
             spark_version: ${var.spark_version}
-            num_workers: 1
+            num_workers: ${num_workers}
             node_type_id: ${var.node_type_id} 

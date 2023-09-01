@@ -5,3 +5,6 @@ variables:
   spark_version:
     description: Spark version to be used in the cluster.
     default: 13.1.x-scala2.12
+  num_workers:
+    description: Number of workers.
+    default: 3  
