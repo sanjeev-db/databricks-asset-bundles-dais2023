@@ -2,26 +2,26 @@ resources:
 
   pipelines:
     # DLT pipeline..
-    source1_medium_metrics_pipeline:
-      name: "[${bundle.environment}] Source1 FE Medium Metrics Pipeline - Volvo"
-      target: "source1_medium_post_report_${bundle.environment}"
+    rhelp_medium_metrics_pipeline:
+      name: "[${bundle.environment}] rhelp Medium Metrics Pipeline"
+      target: "rhelp_medium_post_report_${bundle.environment}"
       libraries:
         - file:
-            path: ./source_1/ingest.py
+            path: ./rhelp/ingest.py
         - file:
-            path: ./source_1/get_metrics.py
+            path: ./rhelp/get_metrics.py
       channel: preview
       configuration:
-        "bundle.file_path": "/Workspace/${workspace.file_path}"
+        "bundle.file_path": "/Workspace/${workspace.file_path}"   
 
   jobs:
     # A two-task Databricks Workflow - dlt + notebook report
-    source1_fe_medium_metrics:
-      name: "[${bundle.environment}] Source1 Metrics for FE Medium Posts"
+    rhelp_fe_medium_metrics:
+      name: "[${bundle.environment}] rhelp Metrics for Medium Posts"
       tasks:
         - task_key: dlt_medium_pipeline
           pipeline_task:
-            pipeline_id: ${resources.pipelines.source1_medium_metrics_pipeline.id}
+            pipeline_id: ${resources.pipelines.rhelp_medium_metrics_pipeline.id}
         - task_key: "${bundle.environment}_medium_notebook_report"
           depends_on:
             - task_key: dlt_medium_pipeline
@@ -30,6 +30,6 @@ resources:
               dbname: "medium_post_report_${bundle.environment}"
             notebook_path: ./source_1/fe_medium_report.py
           new_cluster:
-            spark_version: 13.1.x-scala2.12
+            spark_version: ${var.spark_version}
             num_workers: 1
-            node_type_id: Standard_DS3_v2 
+            node_type_id: ${var.node_type_id} 
