@@ -1,3 +1,7 @@
+include:
+  - ./source_2/jobs.yaml
+
+
 # yaml-language-server: $schema=bundle_config_schema.json
 bundle:
   name: medium_post_report
@@ -42,7 +46,7 @@ resources:
             num_workers: 1
             node_type_id: Standard_DS3_v2  
   
-  Jobs:
+  jobs:
     fe_medium_metrics_dup:
       name: "[${bundle.environment}] Source2 Metrics Medium Posts"
       tasks:
