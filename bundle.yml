@@ -42,7 +42,7 @@ resources:
             num_workers: 1
             node_type_id: Standard_DS3_v2
 
-!include:/mtk/dialogs/pages/basic.yaml        
+!include:jobs.yaml        
             
 
 environments:
