@@ -3,7 +3,8 @@ bundle:
   name: medium_post_report
 
 include:
-  - "*.yml"  
+  - "*.yml" 
+  - "*/*.yml" 
 
 workspace:
   #host: https://e2-dogfood.staging.cloud.databricks.com/
