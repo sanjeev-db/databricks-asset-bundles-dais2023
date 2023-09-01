@@ -14,6 +14,18 @@ resources:
       configuration:
         "bundle.file_path": "/Workspace/${workspace.file_path}"    
 
+    outbound_wikipedia_metrics_pipeline:
+      name: "[${bundle.environment}] outbound Wikipedia Metrics Pipeline"
+      target: "outbound_wikipedia_post_report_${bundle.environment}"
+      libraries:
+        - file:
+            path: ./outbound/ingest.py
+        - file:
+            path: ./outbound/get_metrics.py
+      channel: preview
+      configuration:
+        "bundle.file_path": "/Workspace/${workspace.file_path}"    
+
   jobs:
     # A two-task Databricks Workflow - dlt + notebook report
     outbound_fe_medium_metrics:
