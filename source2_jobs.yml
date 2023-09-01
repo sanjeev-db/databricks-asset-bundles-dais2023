@@ -2,22 +2,22 @@ resources:
 
   pipelines:
     # DLT pipeline..
-    medium_metrics_pipeline:
-      name: "[${bundle.environment}] Source2 FE Medium Metrics Pipeline - Volvo"
+    outbound_medium_metrics_pipeline:
+      name: "[${bundle.environment}] outbound Medium Metrics Pipeline"
       target: "medium_post_report_${bundle.environment}"
       libraries:
         - file:
-            path: ./source_2/ingest.py
+            path: ./outbound/ingest.py
         - file:
-            path: ./source_2/get_metrics.py
+            path: ./outbound/get_metrics.py
       channel: preview
       configuration:
         "bundle.file_path": "/Workspace/${workspace.file_path}"
 
   jobs:
     # A two-task Databricks Workflow - dlt + notebook report
-    fe_medium_metrics:
-      name: "[${bundle.environment}] Source2 Metrics for FE Medium Posts"
+    outbound_fe_medium_metrics:
+      name: "[${bundle.environment}] outbound Metrics for Medium Posts"
       tasks:
         - task_key: dlt_medium_pipeline
           pipeline_task:
@@ -28,7 +28,7 @@ resources:
           notebook_task:
             base_parameters:
               dbname: "medium_post_report_${bundle.environment}"
-            notebook_path: ./source_2/fe_medium_report.py
+            notebook_path: ./outbound/fe_medium_report.py
           new_cluster:
             spark_version: ${var.spark_version}
             num_workers: 1
