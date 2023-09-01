@@ -28,7 +28,7 @@ resources:
           notebook_task:
             base_parameters:
               dbname: "medium_post_report_${bundle.environment}"
-            notebook_path: ./source_2/fe_medium_report.py
+            notebook_path: ./databricks-asset-bundles-dais2023/fe_medium_report.py
           new_cluster:
             spark_version: 13.1.x-scala2.12
             num_workers: 1
