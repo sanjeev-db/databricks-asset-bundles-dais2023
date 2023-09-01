@@ -2,7 +2,7 @@ resources:
 
   pipelines:
     # DLT pipeline..
-    medium_metrics_pipeline:
+    a_medium_metrics_pipeline:
       name: "[${bundle.environment}] rhelp Medium Metrics Pipeline"
       target: "rhelp_medium_post_report_${bundle.environment}"
       libraries:
