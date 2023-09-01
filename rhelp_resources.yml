@@ -1,13 +1,16 @@
 resources:
 
-  pipelines:
-    # DLT pipeline..
-    b_medium_metrics_pipeline:
-      name: "test dlt pipe"
-      target: "b_medium_post_report"
-      libraries:
-        - file:
-            path: ./rhelp/ingest.py
-      channel: preview
-      configuration:
-        "bundle.file_path": "/Workspace/${workspace.file_path}"   
+  jobs:
+    # A two-task Databricks Workflow - dlt + notebook report
+    rhelp_fe_medium_metrics:
+      name: "[${bundle.environment}] rhelp Metrics for Medium Posts"
+      tasks:
+        - task_key: "${bundle.environment}_medium_notebook_report"
+          notebook_task:
+            base_parameters:
+              dbname: "rhelp_medium_post_report_${bundle.environment}"
+            notebook_path: ./rhelp/fe_medium_report.py
+          new_cluster:
+            spark_version: ${var.spark_version}
+            num_workers: 1
+            node_type_id: ${var.node_type_id}    
