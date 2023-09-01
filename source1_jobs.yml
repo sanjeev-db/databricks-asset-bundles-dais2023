@@ -2,7 +2,7 @@ resources:
 
   pipelines:
     # DLT pipeline..
-    medium_metrics_pipeline:
+    source1_medium_metrics_pipeline:
       name: "[${bundle.environment}] Source1 FE Medium Metrics Pipeline - Volvo"
       target: "source1_medium_post_report_${bundle.environment}"
       libraries:
@@ -16,7 +16,7 @@ resources:
 
   jobs:
     # A two-task Databricks Workflow - dlt + notebook report
-    fe_medium_metrics:
+    source1_fe_medium_metrics:
       name: "[${bundle.environment}] Source2 Metrics for FE Medium Posts"
       tasks:
         - task_key: dlt_medium_pipeline
