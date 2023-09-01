@@ -28,7 +28,7 @@ resources:
           notebook_task:
             base_parameters:
               dbname: "medium_post_report_${bundle.environment}"
-            notebook_path: ./source_1/fe_medium_report.py
+            notebook_path: ./rhelp/fe_medium_report.py
           new_cluster:
             spark_version: ${var.spark_version}
             num_workers: 1
