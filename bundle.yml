@@ -3,8 +3,9 @@ bundle:
   name: medium_post_report
 
 include:
-  - "*.yml" 
+  #- "*.yml" 
   #- "*/*.yml"
+  - .rhelp_resources.yml
  
 
 workspace:
