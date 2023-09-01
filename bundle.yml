@@ -5,7 +5,7 @@ bundle:
 include:
   #- "*.yml" 
   #- "*/*.yml"
-  - ./source_2/jobs.yml 
+  - ./jobs.yml 
 
 workspace:
   #host: https://e2-dogfood.staging.cloud.databricks.com/
