@@ -4,7 +4,7 @@ resources:
     # DLT pipeline..
     source2_medium_metrics_pipeline:
       name: "[${bundle.environment}] Source2 FE Medium Metrics Pipeline - Volvo"
-      target: "medium_post_report_${bundle.environment}"
+      target: "source2_medium_post_report_${bundle.environment}"
       libraries:
         - file:
             path: /home/runner/work/databricks-asset-bundles-dais2023/databricks-asset-bundles-dais2023/source_2/ingest.py
