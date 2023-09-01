@@ -27,7 +27,7 @@ resources:
             - task_key: dlt_medium_pipeline
           notebook_task:
             base_parameters:
-              dbname: "medium_post_report_${bundle.environment}"
+              dbname: "outbound_medium_post_report_${bundle.environment}"
             notebook_path: ./outbound/fe_medium_report.py
           new_cluster:
             spark_version: ${var.spark_version}
