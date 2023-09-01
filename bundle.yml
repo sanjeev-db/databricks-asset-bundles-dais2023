@@ -5,7 +5,7 @@ bundle:
 include:
   #- "*.yml" 
   #- "*/*.yml"
-  - .rhelp_resources.yml
+  - ./rhelp_resources.yml
  
 
 workspace:
