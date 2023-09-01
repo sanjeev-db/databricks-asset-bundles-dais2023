@@ -2,7 +2,7 @@ resources:
 
   pipelines:
     # DLT pipeline..
-    a_medium_metrics_pipeline:
+    medium_metrics_pipeline:
       name: "[${bundle.environment}] rhelp Medium Metrics Pipeline"
       target: "rhelp_medium_post_report_${bundle.environment}"
       libraries:
@@ -21,7 +21,7 @@ resources:
       tasks:
         - task_key: dlt_medium_pipeline
           pipeline_task:
-            pipeline_id: ${resources.pipelines.a_medium_metrics_pipeline.id}
+            pipeline_id: ${resources.pipelines.medium_metrics_pipeline.id}
         - task_key: "${bundle.environment}_medium_notebook_report"
           depends_on:
             - task_key: dlt_medium_pipeline
