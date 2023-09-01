@@ -45,6 +45,8 @@ resources:
             spark_version: 13.1.x-scala2.12
             num_workers: 1
             node_type_id: Standard_DS3_v2  
+
+    !include:jobs.yaml        
   
   jobs:
     fe_medium_metrics_dup:
@@ -65,8 +67,7 @@ resources:
             num_workers: 1
             node_type_id: Standard_DS3_v2   
 
-  jobs:
-    !include:jobs.yaml                         
+
 
 environments:
   development:
