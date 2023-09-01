@@ -1,0 +1,7 @@
+variables:
+  node_type_id:
+    description: The node ID for the cluster creation.
+    default: Standard_DS3_v2
+  spark_version:
+    description: Spark version to be used in the cluster.
+    default: 13.1.x-scala2.12

@@ -30,6 +30,6 @@ resources:
               dbname: "medium_post_report_${bundle.environment}"
             notebook_path: ./source_2/fe_medium_report.py
           new_cluster:
-            spark_version: 13.1.x-scala2.12
+            spark_version: ${var.spark_version}
             num_workers: 1
-            node_type_id: Standard_DS3_v2 
+            node_type_id: ${var.node_type_id} 
