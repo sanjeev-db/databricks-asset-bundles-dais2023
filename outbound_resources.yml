@@ -19,12 +19,7 @@ resources:
     outbound_fe_medium_metrics:
       name: "[${bundle.environment}] outbound Metrics for Medium Posts"
       tasks:
-        - task_key: dlt_medium_pipeline
-          pipeline_task:
-            pipeline_id: ${resources.pipelines.medium_metrics_pipeline.id}
         - task_key: "${bundle.environment}_medium_notebook_report"
-          depends_on:
-            - task_key: dlt_medium_pipeline
           notebook_task:
             base_parameters:
               dbname: "outbound_medium_post_report_${bundle.environment}"
