@@ -17,7 +17,7 @@ resources:
   jobs:
     # A two-task Databricks Workflow - dlt + notebook report
     source2_fe_medium_metrics:
-      name: "[${bundle.environment}] source2 Metrics for FE Medium Posts"
+      name: "[${bundle.environment}] Source2 Metrics for FE Medium Posts"
       tasks:
         - task_key: source2_dlt_medium_pipeline
           pipeline_task:
