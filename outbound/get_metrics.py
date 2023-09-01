@@ -7,7 +7,7 @@ import requests
 
 @dlt.table
 def medium_metrics():
-    df: DataFrame = dlt.read("medium_clean")
+    df: DataFrame = dlt.read("medium_rhelp_clean")
 
     metricsDF = df.groupby("link").applyInPandas(get_metrics, schema="link string, claps double, readingTime double")
 
