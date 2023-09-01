@@ -28,7 +28,7 @@ jobs:
       - run: pwd
       - run: ls -ltr
       - run: ls -ltr ./source_2
-      - run: databricks bundle deploy
+      - run: databricks bundle ./source_2/deploy
         env:
           ##DATABRICKS_TOKEN: ${{ secrets.E2_DEMO_WEST_TOKEN }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
