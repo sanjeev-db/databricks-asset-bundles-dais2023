@@ -1,5 +1,5 @@
 include:
-  - ./source_2/jobs.yaml
+  - jobs.yaml
 
 
 # yaml-language-server: $schema=bundle_config_schema.json
