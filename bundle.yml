@@ -42,7 +42,7 @@ resources:
             num_workers: 1
             node_type_id: Standard_DS3_v2
 
-    task2:
+    fe_medium_metrics_dup:
       !include:jobs.yaml        
             
 

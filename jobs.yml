@@ -1,5 +1,4 @@
-fe_medium_metrics:
-    name: aaa
+  name: aaa
     tasks:
       - task_key: dlt_medium_pipeline
         pipeline_task:
