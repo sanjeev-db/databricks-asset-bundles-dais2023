@@ -7,9 +7,9 @@ resources:
       target: "rhelp_medium_post_report_${bundle.environment}"
       libraries:
         - file:
-            path: ../rhelp/ingest.py
+            path: ../outbound/ingest.py
         - file:
-            path: ../rhelp/get_metrics.py
+            path: ../outbound/get_metrics.py
       channel: preview
       configuration:
         "bundle.file_path": "/Workspace/${workspace.file_path}"    
@@ -28,7 +28,7 @@ resources:
           notebook_task:
             base_parameters:
               dbname: "rhelp_medium_post_report_${bundle.environment}"
-            notebook_path: ../rhelp/fe_medium_report.py
+            notebook_path: ../outbound/fe_medium_report.py
           new_cluster:
             spark_version: ${var.spark_version}
             num_workers: 1
