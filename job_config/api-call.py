@@ -28,6 +28,7 @@ headers = {
   'Authorization': 'Bearer dapi6fb63c3d7659275e831613df52ac11ac'
 }
 
-response = requests.request("POST", url, headers=headers, data=payload)
+#response = requests.request("POST", url, headers=headers, data=payload)
+response = requests.post(url, data=payload, headers=headers)
 
 print(response.text)
