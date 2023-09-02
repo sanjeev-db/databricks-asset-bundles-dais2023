@@ -25,6 +25,7 @@ jobs:
 
       - uses: databricks/setup-cli@main
       
+      - run: ls /ltr /home/runner/work/databricks-asset-bundles-dais2023/
       - run: databricks bundle deploy
         env:
           ##DATABRICKS_TOKEN: ${{ secrets.E2_DEMO_WEST_TOKEN }}
