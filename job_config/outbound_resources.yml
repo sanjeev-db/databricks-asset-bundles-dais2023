@@ -31,7 +31,7 @@ resources:
       target: "outbound_ingestion_${bundle.environment}"
       libraries:
         - file:
-            path: ../outbound/generic_notebook.py
+            path: ../generic_notebook.py
       channel: preview
       configuration:
         "bundle.file_path": "/Workspace/${workspace.file_path}"      
