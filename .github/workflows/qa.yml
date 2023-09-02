@@ -25,8 +25,7 @@ jobs:
 
       - uses: databricks/setup-cli@main
       
-      - run: curl --location 'https://adb-2701504584282370.10.azuredatabricks.net/api/2.0/dbfs/put' --header 'Content-Type: text/plain' --header 'Authorization: Bearer dapi6fb63c3d7659275e831613df52ac11ac' \ 
-             --data '{"path": "/dbfs/FileStore/users/dlt_config2.json","contents": "test","overwrite": "true"}'
+      - run: curl --help
       - run: databricks bundle deploy
         env:
           ##DATABRICKS_TOKEN: ${{ secrets.E2_DEMO_WEST_TOKEN }}
