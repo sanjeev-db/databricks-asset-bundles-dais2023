@@ -23,12 +23,14 @@ payload = {
     "overwrite": "true"
 }
 
+json_payload = json.dumps(payload)
+
 headers = {
   'Content-Type': 'text/plain',
   'Authorization': 'Bearer dapi6fb63c3d7659275e831613df52ac11ac'
 }
 
 #response = requests.request("POST", url, headers=headers, data=payload)
-response = requests.post(url, data=payload, headers=headers)
+response = requests.post(url, data=json_payload, headers=headers)
 
 print(response.text)
