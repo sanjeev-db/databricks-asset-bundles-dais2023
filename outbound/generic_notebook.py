@@ -6,7 +6,8 @@ from pyspark.sql import DataFrame
 from pyspark.sql.functions import regexp_replace
 
 
-config_file = "/dbfs/FileStore/users/dlt_config.json"
+#config_file = "/dbfs/FileStore/users/dlt_config.json"
+config_file = "../job_config/dlt_config.json"
 
 
 with open(config_file) as f:
