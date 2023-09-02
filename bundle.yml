@@ -7,7 +7,7 @@ include:
   #- "*/*.yml"
   - ./rhelp_resources.yml
   - ./common_variables.yml
-  - ./outbound_resources.yml
+  - ./outbound/outbound_resources.yml
  
 
 workspace:
