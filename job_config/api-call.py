@@ -19,7 +19,7 @@ encoded_data = base64.b64encode(data_to_encode.encode("utf-8")).decode("utf-8")
 #payload = "{\n  \"path\": \"/dbfs/FileStore/users/dlt_config1.json\",\n  \"contents\": encoded_data,\n  \"overwrite\": \"true\"\n}"
 payload = {
     "path": "/dbfs/FileStore/users/dlt-config3.json",
-    "contents": "aaaaaa",
+    "contents": encoded_data,
     "overwrite": "true"
 }
 
