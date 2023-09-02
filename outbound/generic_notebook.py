@@ -7,9 +7,8 @@ from pyspark.sql.functions import regexp_replace
 
 
 #config_file = "/dbfs/FileStore/users/dlt_config.json"
-#config_file = "/Users/sanjeev.kumar@databricks.com/.bundle/medium_post_report/qa/files/outbound/dlt_config.json"
-config_file = "./dlt-config.json"
-
+config_file = "/Users/sanjeev.kumar@databricks.com/.bundle/medium_post_report/qa/files/outbound/dlt-config.json"
+#config_file = "dlt-config.json"
 
 with open(config_file) as f:
     sources = json.load(f)
