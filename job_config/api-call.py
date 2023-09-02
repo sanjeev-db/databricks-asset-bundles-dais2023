@@ -2,7 +2,11 @@ import requests
 
 url = "https://adb-2701504584282370.10.azuredatabricks.net/api/2.0/dbfs/put"
 
-payload = "{\n  \"path\": \"/dbfs/FileStore/users/dlt-config3.json\",\n  \"contents\": \"./test.txt\",\n  \"overwrite\": \"true\"\n}"
+#Open and read the local file
+with open("./dlt-config.json", "rb") as file:
+    file_contents = file.read()
+
+payload = { "path": "/dbfs/FileStore/users/dlt-config3.json", "contents": file_contents, "overwrite": "true"}
 headers = {
   'Content-Type': 'text/plain',
   'Authorization': 'Bearer dapi6fb63c3d7659275e831613df52ac11ac'
