@@ -7,7 +7,7 @@ resources:
       target: "rhelp_medium_post_report_${bundle.environment}"
       libraries:
         - file:
-            path: ../rhelp/ingest_rhelp.py
+            path: ./rhelp/ingest.py
         - file:
             path: ./rhelp/get_metrics.py
       channel: preview
