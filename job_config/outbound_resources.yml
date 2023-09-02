@@ -7,9 +7,9 @@ resources:
       target: "outbound_medium_post_report_${bundle.environment}"
       libraries:
         - file:
-            path: ./outbound/ingest.py
+            path: ../outbound/ingest.py
         - file:
-            path: ./outbound/get_metrics.py
+            path: ../outbound/get_metrics.py
       channel: preview
       configuration:
         "bundle.file_path": "/Workspace/${workspace.file_path}"    
@@ -19,9 +19,9 @@ resources:
       target: "outbound_wikipedia_post_report_${bundle.environment}"
       libraries:
         - file:
-            path: ./outbound/ingest.py
+            path: ../outbound/ingest.py
         - file:
-            path: ./outbound/get_metrics.py
+            path: ../outbound/get_metrics.py
       channel: preview
       configuration:
         "bundle.file_path": "/Workspace/${workspace.file_path}"  
@@ -31,7 +31,7 @@ resources:
       target: "outbound_ingestion_${bundle.environment}"
       libraries:
         - file:
-            path: ./outbound/generic_notebook.py
+            path: ../outbound/generic_notebook.py
       channel: preview
       configuration:
         "bundle.file_path": "/Workspace/${workspace.file_path}"      
@@ -50,7 +50,7 @@ resources:
           notebook_task:
             base_parameters:
               dbname: "outbound_medium_post_report_${bundle.environment}"
-            notebook_path: ./outbound/fe_medium_report.py
+            notebook_path: ../outbound/fe_medium_report.py
           new_cluster:
             spark_version: ${var.spark_version}
             num_workers: 1
@@ -63,7 +63,7 @@ resources:
           notebook_task:
             base_parameters:
               dbname: "outbound_medium_post_report_${bundle.environment}"
-            notebook_path: ./outbound/fe_medium_report.py
+            notebook_path: ../outbound/fe_medium_report.py
           new_cluster:
             spark_version: ${var.spark_version}
             num_workers: 1
@@ -76,7 +76,7 @@ resources:
           notebook_task:
             base_parameters:
               dbname: "outbound_medium_post_report_${bundle.environment}"
-            notebook_path: ./outbound/fe_medium_report.py
+            notebook_path: ../outbound/fe_medium_report.py
           new_cluster:
             spark_version: ${var.spark_version}
             num_workers: 1
