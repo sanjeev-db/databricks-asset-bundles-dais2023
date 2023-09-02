@@ -10,6 +10,8 @@ url = "https://adb-2701504584282370.10.azuredatabricks.net/api/2.0/dbfs/put"
  #   file_contents = file.read()
 with open("./dlt-config.json") as f:
     file_contents = json.load(f)    
+print("****")
+print(type(file_contents))    
 
 # Data to encode
 data_to_encode = "Hello, World!"  
