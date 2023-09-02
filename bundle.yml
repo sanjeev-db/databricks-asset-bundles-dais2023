@@ -3,11 +3,11 @@ bundle:
   name: medium_post_report
 
 include:
-  #- "*.yml" 
-  #- "*/*.yml"
-  - ./rhelp_resources.yml
-  - ./common_variables.yml
-  - ./outbound/outbound_resources.yml
+  - "*.yml" 
+  - "*/*.yml"
+  #- ./rhelp_resources.yml
+  #- ./common_variables.yml
+  #- ./outbound/outbound_resources.yml
  
 
 workspace:
