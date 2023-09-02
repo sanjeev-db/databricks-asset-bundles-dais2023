@@ -25,9 +25,6 @@ jobs:
 
       - uses: databricks/setup-cli@main
       
-      - run: pwd
-      - run: ls
-      - run: python ./job_config/api-call.py
       - run: databricks bundle deploy
         env:
           ##DATABRICKS_TOKEN: ${{ secrets.E2_DEMO_WEST_TOKEN }}
