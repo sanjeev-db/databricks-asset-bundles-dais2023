@@ -24,7 +24,17 @@ resources:
             path: ./outbound/get_metrics.py
       channel: preview
       configuration:
-        "bundle.file_path": "/Workspace/${workspace.file_path}"    
+        "bundle.file_path": "/Workspace/${workspace.file_path}"  
+
+    outbound_ingestion_pipeline:
+      name: "[${bundle.environment}] outbound ingestion Pipeline"
+      target: "outbound_ingestion_${bundle.environment}"
+      libraries:
+        - file:
+            path: ./outbound/generic_notebook.py
+      channel: preview
+      configuration:
+        "bundle.file_path": "/Workspace/${workspace.file_path}"      
 
   jobs:
     # A two-task Databricks Workflow - dlt + notebook report
