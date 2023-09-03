@@ -23,7 +23,7 @@ json_payload = json.dumps(payload)
 
 headers = {
   'Content-Type': 'text/plain',
-  'Authorization': 'Bearer dapi6fb63c3d7659275e831613df52ac11ac'
+  'Authorization': 'Bearer dapizzzzzzz'
 }
 
 #response = requests.request("POST", url, headers=headers, data=payload)
