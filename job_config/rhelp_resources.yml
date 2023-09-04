@@ -17,7 +17,7 @@ resources:
   jobs:
     # A two-task Databricks Workflow - dlt + notebook report
     rhelp_fe_medium_metrics:
-      name: "[${bundle.environment}] rhelp Metrics for Medium Posts"
+      name: "[${bundle.environment}] rhelp Metrics for Medium Posts - demo"
       tasks:
         - task_key: dlt_medium_pipeline
           pipeline_task:
