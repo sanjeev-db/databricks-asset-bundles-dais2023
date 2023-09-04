@@ -1,7 +1,7 @@
 resources:
 
   pipelines:
-    # DLT pipeline..
+    # DLT pipeline...
     outbound_medium_metrics_pipeline:
       name: "[${bundle.environment}] outbound Medium Metrics Pipeline"
       target: "outbound_medium_post_report_${bundle.environment}"
