@@ -37,7 +37,7 @@ resources:
         "bundle.file_path": "/Workspace/${workspace.file_path}"      
 
   jobs:
-    # A two-task Databricks Workflow - dlt + notebook report
+    # A two-task Databricks Workflow - dlt + notebook report. 
     outbound_fe_medium_metrics:
       name: "[${bundle.environment}] outbound Metrics for Medium Posts"
       tasks:
