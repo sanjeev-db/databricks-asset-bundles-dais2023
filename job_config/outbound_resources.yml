@@ -95,7 +95,9 @@ resources:
         - level: CAN_VIEW
           group_name: users 
         - level: CAN_MANAGE
-          user_name: kamalendu.biswas@databricks.com             
+          user_name: kamalendu.biswas@databricks.com  
+      tags:
+        created_by: cost_center_supercell_demo               
       tasks:
         - task_key: "Set_date_for_subsequent_tasks"
           notebook_task:
@@ -115,6 +117,7 @@ resources:
         - task_key: "task3"
           depends_on:
             - task_key: Set_date_for_subsequent_tasks
+          run_if: AT_LEAST_ONE_SUCCESS  
           notebook_task:
             base_parameters:
               rundate: "{{tasks.Set_date_for_subsequent_tasks.values.task3_rundate}}"
