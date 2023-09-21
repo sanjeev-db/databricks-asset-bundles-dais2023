@@ -92,10 +92,7 @@ resources:
               task2_run_day: "-1"
               task3_run_day: "-2"
             notebook_path: ../outbound/task1_set_date.py
-          new_cluster:
-            spark_version: ${var.spark_version}
-            num_workers: 1
-            node_type_id: ${var.node_type_id}  
+          job_cluster_key: Job_compute_cluster  
       parameters: 
         - name: job_id
           default: "{{job.id}}"
