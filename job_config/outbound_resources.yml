@@ -86,9 +86,9 @@ resources:
     Evaluate_param_pass_to_child_tasks:
       name: "[${bundle.environment}] Evaluate rundate and pass to child tasks"
       parameters: 
-        - name: "job_id"
+        - name: job_id
           default: "{{job.id}}"
-        - name: "run_date"
+        - name: run_date
           default: "2023-08-25"          
       tasks:
         - task_key: "Set_date_for_subsequent_tasks"
