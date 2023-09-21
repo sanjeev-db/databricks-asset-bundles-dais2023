@@ -12,7 +12,7 @@ param_task3_run_day = int(dbutils.widgets.get("task3_run_day"))
 # COMMAND ----------
 
 # Convert string to datetime object
-date_obj = datetime.strptime(param_date, "%Y-%m-%d")
+date_obj = datetime.strptime(param_job_date, "%Y-%m-%d")
 
 # Add one day to the datetime object
 task2_run_date = date_obj + timedelta(days=param_task2_run_day)
