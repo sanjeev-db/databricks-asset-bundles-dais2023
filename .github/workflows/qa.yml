@@ -49,16 +49,16 @@ jobs:
 #       - run: pip install -r requirements.txt
 #         working-directory: .github/support
 
-      - uses: databricks/setup-cli@main
+      ##- uses: databricks/setup-cli@main
 
-      - shell: bash
-        name: Run pipeline update
-        run: |
-          set -o pipefail
-          databricks bundle run fe_medium_metrics --refresh-all 2>&1 | tee output.log
-        env:
-          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-          DATABRICKS_BUNDLE_ENV: qa
+      ##- shell: bash
+      ##  name: Run pipeline update
+      ##  run: |
+      ##    set -o pipefail
+      ##    databricks bundle run fe_medium_metrics --refresh-all 2>&1 | tee output.log
+      ##  env:
+      ##    DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+      ##    DATABRICKS_BUNDLE_ENV: qa
 
 #       - shell: bash
 #         if: always()
