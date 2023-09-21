@@ -98,7 +98,15 @@ resources:
               task2_run_day: "-1"
               task3_run_day: "-2"
             notebook_path: ../outbound/task1_set_date.py
-          job_cluster_key: Job_compute_cluster  
+          job_cluster_key: Job_compute_cluster 
+        - task_key: "task2"
+          depends_on:
+            - task_key: Set_date_for_subsequent_tasks
+          notebook_task:
+            base_parameters:
+              rundate: "{{tasks.Set_date_for_subsequent_tasks.values.task2_rundate}}"
+            notebook_path: ../outbound/task2.py
+          job_cluster_key: Job_compute_cluster   
       parameters: 
         - name: job_id
           default: "{{job.id}}"
