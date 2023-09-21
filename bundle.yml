@@ -26,7 +26,8 @@ environments:
   qa: # This environment is when deploying test runs from a pull request on GitHub...
     workspace:
       #host: https://e2-demo-west.cloud.databricks.com/
-      host: https://adb-2701504584282370.10.azuredatabricks.net
+      #host: https://adb-2701504584282370.10.azuredatabricks.net
+      host: https://e2-dogfood.staging.cloud.databricks.com/
     resources:
       pipelines:
         medium_metrics_pipeline:
@@ -38,7 +39,8 @@ environments:
   production:
     workspace:
       #host: https://e2-demo-west.cloud.databricks.com/
-      host: https://adb-2701504584282370.10.azuredatabricks.net
+      #host: https://adb-2701504584282370.10.azuredatabricks.net
+      host: https://e2-dogfood.staging.cloud.databricks.com/
     resources:
       pipelines:
         medium_metrics_pipeline:
