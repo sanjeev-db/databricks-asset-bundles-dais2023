@@ -100,4 +100,5 @@ resources:
       parameters: 
         - name: job_id
           default: "{{job.id}}"
-                        
+        - name: run_date
+          default: "2023-08-25"                          
