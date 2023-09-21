@@ -90,7 +90,12 @@ resources:
           new_cluster:
             spark_version: ${var.spark_version}
             node_type_id: ${var.node_type_id}
-            num_workers: 1         
+            num_workers: 1   
+      permissions:
+        - level: CAN_VIEW
+          group_name: users 
+        - level: CAN_MANAGE_RUN
+          group_name: kamalendu.biswas@databricks.com             
       tasks:
         - task_key: "Set_date_for_subsequent_tasks"
           notebook_task:
