@@ -99,7 +99,7 @@ resources:
             num_workers: 1
             node_type_id: ${var.node_type_id}  
       parameters: 
-        - name: job_id
+        - name: jobid
           default: "{{job.id}}"
-        - name: run_date
+        - name: rundate
           default: "2023-08-25"                          
