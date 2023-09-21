@@ -84,12 +84,7 @@ resources:
 
     # A two-task Databricks Workflow - dlt + notebook report. 
     Evaluate_param_pass_to_child_tasks:
-      name: "[${bundle.environment}] Evaluate rundate and pass to child tasks"
-      parameters: 
-        - name: job_id
-          default: "{{job.id}}"
-        - name: run_date
-          default: "2023-08-25"          
+      name: "[${bundle.environment}] Evaluate rundate and pass to child tasks"          
       tasks:
         - task_key: "Set_date_for_subsequent_tasks"
           notebook_task:
@@ -101,4 +96,7 @@ resources:
           new_cluster:
             spark_version: ${var.spark_version}
             num_workers: 1
-            node_type_id: ${var.node_type_id}                      
+            node_type_id: ${var.node_type_id}  
+      parameters: 
+        - name: job_id
+          default: "{{job.id}}"                        
