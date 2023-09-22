@@ -121,7 +121,7 @@ resources:
           notebook_task:
             base_parameters:
               rundate: "{{tasks.Set_date_for_subsequent_tasks.values.task3_rundate}}"
-            notebook_path: ../outbound/task2.py
+            notebook_path: ../outbound/task3.py
           job_cluster_key: Job_compute_cluster    
       parameters: 
         - name: job_id
