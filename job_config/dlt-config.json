@@ -1,6 +1,6 @@
 [
     {
-        "source_name": "cusotmers",
+        "source_name": "cusotmers1",
         "source_file_format": "parquet",
         "source_path": "/user/sanjeev.kumar@databricks.com/iss/cdc_raw/customers",
         "SCD2": true,
@@ -17,7 +17,7 @@
         "source_name": "transactions",
         "source_file_format": "json",
         "source_path": "/user/sanjeev.kumar@databricks.com/iss/cdc_raw/transactions",
-        "SCD2": true,
+        "SCD2": false,
         "expect_all_or_drop": {
             "no_rescued_data": "_rescued_data IS NULL", 
             "valid_id": "id IS NOT NULL", 
