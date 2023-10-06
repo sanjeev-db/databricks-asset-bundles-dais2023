@@ -2,64 +2,18 @@
 bundle:
   name: medium_post_report
 
+include:
+  - "*.yml" 
+  - "*/*.yml"
+  #- ./rhelp_resources.yml
+  #- ./common_variables.yml
+  #- ./outbound/outbound_resources.yml
+ 
+
 workspace:
   #host: https://e2-dogfood.staging.cloud.databricks.com/
   host: https://adb-2701504584282370.10.azuredatabricks.net
-
-resources:
-
-  pipelines:
-    # DLT pipeline..
-    medium_metrics_pipeline:
-      name: "[${bundle.environment}] FE Medium Metrics Pipeline - Volvo"
-      target: "medium_post_report_${bundle.environment}"
-      libraries:
-        - file:
-            path: ./source_1/ingest.py
-        - file:
-            path: ./source_1/get_metrics.py
-      channel: preview
-      configuration:
-        "bundle.file_path": "/Workspace/${workspace.file_path}"
-
-  jobs:
-    # A two-task Databricks Workflow - dlt + notebook report
-    fe_medium_metrics:
-      name: "[${bundle.environment}] Metrics for FE Medium Posts"
-      tasks:
-        - task_key: dlt_medium_pipeline
-          pipeline_task:
-            pipeline_id: ${resources.pipelines.medium_metrics_pipeline.id}
-        - task_key: "${bundle.environment}_medium_notebook_report"
-          depends_on:
-            - task_key: dlt_medium_pipeline
-          notebook_task:
-            base_parameters:
-              dbname: "medium_post_report_${bundle.environment}"
-            notebook_path: ./source_1/fe_medium_report.py
-          new_cluster:
-            spark_version: 13.1.x-scala2.12
-            num_workers: 1
-            node_type_id: Standard_DS3_v2  
-  
-  Jobs:
-    fe_medium_metrics_dup:
-      name: "[${bundle.environment}] Source2 Metrics Medium Posts"
-      tasks:
-        - task_key: dlt_medium_pipeline_source2
-          pipeline_task:
-            pipeline_id: ${resources.pipelines.medium_metrics_pipeline.id}
-        - task_key: "${bundle.environment}_medium_notebook_report_source2"
-          depends_on:
-            - task_key: dlt_medium_pipeline_source2
-          notebook_task:
-            base_parameters:
-              dbname: "medium_post_report_${bundle.environment}"
-            notebook_path: ./source_2/fe_medium_report.py
-          new_cluster:
-            spark_version: 13.1.x-scala2.12
-            num_workers: 1
-            node_type_id: Standard_DS3_v2                  
+            
 
 environments:
   development:
@@ -69,10 +23,12 @@ environments:
         medium_metrics_pipeline:
           development: true
 
-  qa: # This environment is when deploying test runs from a pull request on GitHub.
+  qa: # This environment is when deploying test runs from a pull request on GitHub...
     workspace:
       #host: https://e2-demo-west.cloud.databricks.com/
-      host: https://adb-2701504584282370.10.azuredatabricks.net
+      #host: https://adb-2701504584282370.10.azuredatabricks.net
+      host: https://e2-dogfood.staging.cloud.databricks.com/
+      #host: https://e2-demo-field-eng.cloud.databricks.com/
     resources:
       pipelines:
         medium_metrics_pipeline:
@@ -84,7 +40,9 @@ environments:
   production:
     workspace:
       #host: https://e2-demo-west.cloud.databricks.com/
-      host: https://adb-2701504584282370.10.azuredatabricks.net
+      #host: https://adb-2701504584282370.10.azuredatabricks.net
+      host: https://e2-dogfood.staging.cloud.databricks.com/
+      #host: https://e2-demo-field-eng.cloud.databricks.com/
     resources:
       pipelines:
         medium_metrics_pipeline:

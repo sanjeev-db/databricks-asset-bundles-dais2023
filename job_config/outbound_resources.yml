@@ -1,0 +1,130 @@
+resources:
+
+  pipelines:
+    # DLT pipeline...
+    outbound_medium_metrics_pipeline:
+      name: "[${bundle.environment}] outbound Medium Metrics Pipeline"
+      target: "outbound_medium_post_report_${bundle.environment}"
+      libraries:
+        - file:
+            path: ../outbound/ingest.py
+        - file:
+            path: ../outbound/get_metrics.py
+      channel: preview
+      configuration:
+        "bundle.file_path": "/Workspace/${workspace.file_path}"    
+
+    outbound_wikipedia_metrics_pipeline:
+      name: "[${bundle.environment}] outbound Wikipedia Metrics Pipeline"
+      target: "outbound_wikipedia_post_report_${bundle.environment}"
+      libraries:
+        - file:
+            path: ../outbound/ingest.py
+        - file:
+            path: ../outbound/get_metrics.py
+      channel: preview
+      configuration:
+        "bundle.file_path": "/Workspace/${workspace.file_path}"  
+
+    outbound_ingestion_pipeline:
+      name: "[${bundle.environment}] outbound ingestion Pipeline"
+      target: "outbound_ingestion_${bundle.environment}"
+      libraries:
+        - file:
+            path: ../generic_notebook.py
+      channel: preview
+      configuration:
+        "bundle.file_path": "/Workspace/${workspace.file_path}"      
+
+  jobs:
+    # A two-task Databricks Workflow - dlt + notebook report. 
+    outbound_fe_medium_metrics:
+      name: "[${bundle.environment}] outbound Metrics for Medium Posts"
+      tasks:
+        - task_key: dlt_medium_pipeline
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.medium_metrics_pipeline.id}
+        - task_key: "${bundle.environment}_medium_notebook_report"
+          depends_on:
+            - task_key: dlt_medium_pipeline
+          notebook_task:
+            base_parameters:
+              dbname: "outbound_medium_post_report_${bundle.environment}"
+            notebook_path: ../outbound/fe_medium_report.py
+          new_cluster:
+            spark_version: ${var.spark_version}
+            num_workers: 1
+            node_type_id: ${var.node_type_id} 
+
+    outbound_fe_wikipedia_metrics:
+      name: "[${bundle.environment}] outbound Metrics for Wikipedia Posts"
+      tasks:
+        - task_key: "${bundle.environment}_medium_notebook_report"
+          notebook_task:
+            base_parameters:
+              dbname: "outbound_medium_post_report_${bundle.environment}"
+            notebook_path: ../outbound/fe_medium_report.py
+          new_cluster:
+            spark_version: ${var.spark_version}
+            num_workers: 1
+            node_type_id: ${var.node_type_id}   
+
+    outbound_fe_twitter_metrics:
+      name: "[${bundle.environment}] outbound Metrics for Twitter Posts"
+      tasks:
+        - task_key: "${bundle.environment}_medium_notebook_report"
+          notebook_task:
+            base_parameters:
+              dbname: "outbound_medium_post_report_${bundle.environment}"
+            notebook_path: ../outbound/fe_medium_report.py
+          new_cluster:
+            spark_version: ${var.spark_version}
+            num_workers: 1
+            node_type_id: ${var.node_type_id}    
+
+    # A two-task Databricks Workflow - dlt + notebook report. 
+    Evaluate_param_pass_to_child_tasks:
+      name: "[${bundle.environment}] Evaluate rundate and pass to child tasks" 
+      job_clusters:
+        - job_cluster_key: Job_compute_cluster
+          new_cluster:
+            spark_version: ${var.spark_version}
+            node_type_id: ${var.node_type_id}
+            num_workers: 1   
+      permissions:
+        - level: CAN_VIEW
+          group_name: users 
+        - level: CAN_MANAGE
+          user_name: kamalendu.biswas@databricks.com  
+      tags:
+        created_by: cost_center_supercell_demo               
+      tasks:
+        - task_key: "Set_date_for_subsequent_tasks"
+          notebook_task:
+            base_parameters:
+              task2_run_day: "-1"
+              task3_run_day: "-2"
+            notebook_path: ../outbound/task1_set_date.py
+          job_cluster_key: Job_compute_cluster 
+        - task_key: "task2"
+          depends_on:
+            - task_key: Set_date_for_subsequent_tasks
+          notebook_task:
+            base_parameters:
+              rundate: "{{tasks.Set_date_for_subsequent_tasks.values.task2_rundate}}"
+            notebook_path: ../outbound/task2.py
+          job_cluster_key: Job_compute_cluster  
+        - task_key: "task3"
+          depends_on:
+            - task_key: Set_date_for_subsequent_tasks
+          run_if: AT_LEAST_ONE_SUCCESS  
+          notebook_task:
+            base_parameters:
+              rundate: "{{tasks.Set_date_for_subsequent_tasks.values.task3_rundate}}"
+            notebook_path: ../outbound/task3.py
+          job_cluster_key: Job_compute_cluster    
+      parameters: 
+        - name: job_id
+          default: "{{job.id}}"
+        - name: run_date
+          default: "2023-08-25"                          

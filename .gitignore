@@ -1,4 +1,3 @@
 .databricks
 *.pyc
-*.json
 .vscode/settings.json
