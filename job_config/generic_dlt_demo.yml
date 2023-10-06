@@ -7,29 +7,7 @@ resources:
       target: "rhelp_medium_post_report1_${bundle.environment}"
       libraries:
         - file:
-            path: ./rhelp/ingest.py
-        - file:
-            path: ./rhelp/get_metrics.py
+            path: ./generic-dlt-demo/ingest.py
       channel: preview
       configuration:
         "bundle.file_path": "/Workspace/${workspace.file_path}"    
-
-  jobs:
-    # A two-task Databricks Workflow - dlt + notebook report
-    rhelp_fe_medium_metrics1:
-      name: "[${bundle.environment}] rhelp1 Metrics for Medium Posts - demo"
-      tasks:
-        - task_key: dlt_medium_pipeline1
-          pipeline_task:
-            pipeline_id: ${resources.pipelines.medium_metrics_pipeline.id}
-        - task_key: "${bundle.environment}_medium_notebook_report"
-          depends_on:
-            - task_key: dlt_medium_pipeline1
-          notebook_task:
-            base_parameters:
-              dbname: "rhelp_medium_post_report_${bundle.environment}"
-            notebook_path: ../rhelp/fe_medium_report.py
-          new_cluster:
-            spark_version: ${var.spark_version}
-            num_workers: 1
-            node_type_id: ${var.node_type_id} 
