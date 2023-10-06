@@ -6,8 +6,8 @@ resources:
       name: "[${bundle.environment}] Generic DLT Demo Pipeline"
       target: "dlt_demo_generic_${bundle.environment}"
       libraries:
-        - file:
-            path: ./generic-dlt-demo/02-Retail_DLT_CDC_Python_Metadriven.py
+        - notebook: 
+              path: ./generic-dlt-demo/02-Retail_DLT_CDC_Python_Metadriven.py
       channel: preview
       configuration:
         "bundle.file_path": "/Workspace/${workspace.file_path}"    
